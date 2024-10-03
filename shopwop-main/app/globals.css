@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Zpix";
+  src: url("./fonts/zpix.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: "Zpix", sans-serif;
+  cursor: url("../assets/images/cursor.png"), auto;
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 0.3s forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@layer utilities {
+  .crt {
+    @apply absolute top-0 left-0 bottom-0 right-0;
+  }
+
+  .crt::after {
+    content: " ";
+    @apply fixed top-0 left-0 bottom-0 right-0 bg-black bg-opacity-10 opacity-0 z-20 pointer-events-none animate-flicker; /* Changed to animate-flicker */
+  }
+
+  .crt::before {
+    content: " ";
+    @apply fixed top-0 left-0 bottom-0 right-0 z-20 pointer-events-none;
+    background: linear-gradient(rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+      linear-gradient(
+        90deg,
+        rgba(128, 0, 128, 0.06),
+        rgba(150, 0, 255, 0.03),
+        rgba(85, 37, 130, 0.06)
+      );
+    background-size: 100% 2px, 3px 100%;
+  }
+}
